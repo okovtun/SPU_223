@@ -5,6 +5,13 @@ Books:
 https://drive.google.com/drive/folders/1mIhAKMp5-Jpy6s5X8u924tRCXFEdHE_z?usp=sharing
 
 TODO:
+Для класса Fraction перегрузить
+1. Арифметические операторы: +, -, *, /;
+2. Составные присваивания:  +=, -=, *=, /=;
+3. Increment/Decrement (++/--);
+4. Операторы сравнения: ==, !=, >, <, >=, <=;
+
+DONE:
 В отдельном проекте реализовать класс Fraction, описывающий простую дробь.
 
 DONE:
