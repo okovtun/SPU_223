@@ -6,11 +6,9 @@ https://drive.google.com/drive/folders/1mIhAKMp5-Jpy6s5X8u924tRCXFEdHE_z?usp=sha
 
 TODO:
 1. Для класса Fraction перегрузить оператор ввода с клавиатуры:
-	Fraction A;
-	cout << "Введите простую дробь: "; 
-	cin >> A;
-	cout << A << endl;
-2. Проверочный
+	https://github.com/okovtun/SPU_223/blob/f6f9f2055774f3b083b118b93f0bd1596c16aa5d/IntroductionToOOP/Fraction/main.cpp#L395
+2. Проверочный код должен заработать:
+	https://github.com/okovtun/SPU_223/blob/f6f9f2055774f3b083b118b93f0bd1596c16aa5d/IntroductionToOOP/Fraction/main.cpp#L403
 
 DONE:
 Для класса Fraction перегрузить
