@@ -51,7 +51,7 @@ public:
 		cout.width(WIDTH);
 		cout << std::left << "DefaultConstructor:" << this << endl;
 	}
-	Fraction(int integer)
+	explicit Fraction(int integer)	//explicit - явный
 	{
 		this->integer = integer;
 		this->numerator = 0;
@@ -119,6 +119,16 @@ public:
 		Fraction old = *this;
 		integer++;
 		return old;
+	}
+
+	//				Type-cast operators:
+	explicit operator int()
+	{
+		return to_proper().integer;
+	}
+	explicit operator double()const
+	{
+		return integer + (double)numerator / denominator;
 	}
 
 	//					Methods:
@@ -226,8 +236,8 @@ bool operator==(Fraction left, Fraction right)
 		return true;
 	else
 		return false;*/
-	return 
-		left.get_numerator()*right.get_denominator() == 
+	return
+		left.get_numerator()*right.get_denominator() ==
 		right.get_numerator()*left.get_denominator();
 }
 bool operator!=(const Fraction& left, const Fraction& right)
@@ -235,9 +245,27 @@ bool operator!=(const Fraction& left, const Fraction& right)
 	return !(left == right);
 }
 
+std::ostream& operator<<(std::ostream& os, const Fraction& obj)
+{
+	if (obj.get_integer())os << obj.get_integer();
+	if (obj.get_numerator())
+	{
+		if (obj.get_integer()) cout << "(";
+		os << obj.get_numerator() << "/" << obj.get_denominator();
+		if (obj.get_integer()) cout << ")";
+	}
+	else if (obj.get_integer() == 0)os << 0;
+	return os;
+}
+
 //#define CONSTRUCTORS_CHECK
 //#define ARITHMETICAL_OPERATORS_CHECK
 //#define INCREMENT_CHECK
+//#define TYPE_CONVERSIONS_BASICS
+//#define CONVERSION_FROM_OTHER_TO_CLASS
+//#define CONVERSION_FROM_CLASS_TO_OTHER
+#define HOME_WORK_1
+#define HOME_WORK_2
 
 void main()
 {
@@ -303,8 +331,77 @@ void main()
 	for (Fraction i(1, 2); i.get_integer() < 10; i++)
 	{
 		i.print();
-	}
+}
 #endif // INCREMENT_CHECK
 
-	cout << (Fraction(1, 2) != Fraction(5, 11)) << endl;
+	//cout << (Fraction(1, 2) != Fraction(5, 11)) << endl;
+
+	/*Fraction A(2, 3, 4);
+	cout << A << endl;
+	cout << typeid(cin).name() << endl;*/
+
+	//(type)value;	//C-like notation
+	//type(value);	//Functional notation
+	//Warning: conversion from 'type1' to 'type2' possible loss of data
+
+#ifdef TYPE_CONVERSIONS_BASICS
+	int a = 2;		//No conversion
+	double b = a;	//Conversion from less to more
+	double c = 2.;	//No conversion
+	int d = b;		//From more to less without data loss
+	int e = 2.7;	//From more to less with data loss
+
+	cout << typeid(2 + 3U).name() << endl;
+#endif // TYPE_CONVERSIONS_BASICS
+
+#ifdef CONVERSION_FROM_OTHER_TO_CLASS
+	//1) Из других типов в наш тип;
+//2) Из нашего типа в другие типы;
+
+	Fraction A = (Fraction)5;	//From 'int' to 'Fraction'
+	cout << A << endl;
+	cout << endl;
+
+	Fraction B;		//Default constructor
+	B = Fraction(8);
+	cout << B << endl;
+
+
+	//Fraction C = 12;	//explicit-конструктор невозможно вызвать оператором '='
+	Fraction C(12);		//explicit-конструктор можно вызвать только так
+	Fraction D{ 13 };	//или так
+#endif // CONVERSION_FROM_OTHER_TO_CLASS
+
+#ifdef CONVERSION_FROM_CLASS_TO_OTHER
+			/*
+------------------------------------
+Type-cast operators:
+
+operator type()const
+{
+	conversion - code;
+}
+------------------------------------
+*/
+	Fraction A(5);
+	int a = (int)A;
+	cout << a << endl;
+
+	Fraction B(2, 3, 4);
+	double b = (double)B;
+	cout << b << endl;
+#endif // CONVERSION_FROM_CLASS_TO_OTHER
+
+#ifdef HOME_WORK_1
+	Fraction A;
+	cout << "Введите простую дробь: ";
+	cin >> A;
+	cout << A << endl;
+#endif // HOME_WORK_1
+
+#ifdef HOME_WORK_2
+	Fraction B = 2.75;
+	cout << B << endl;
+#endif // HOME_WORK_2
+
 }

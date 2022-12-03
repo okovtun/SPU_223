@@ -5,6 +5,14 @@ Books:
 https://drive.google.com/drive/folders/1mIhAKMp5-Jpy6s5X8u924tRCXFEdHE_z?usp=sharing
 
 TODO:
+1. Для класса Fraction перегрузить оператор ввода с клавиатуры:
+	Fraction A;
+	cout << "Введите простую дробь: "; 
+	cin >> A;
+	cout << A << endl;
+2. Проверочный
+
+DONE:
 Для класса Fraction перегрузить
 1. Арифметические операторы: +, -, *, /;
 2. Составные присваивания:  +=, -=, *=, /=;
