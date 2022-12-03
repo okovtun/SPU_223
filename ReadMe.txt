@@ -9,6 +9,9 @@ TODO:
 	https://github.com/okovtun/SPU_223/blob/f6f9f2055774f3b083b118b93f0bd1596c16aa5d/IntroductionToOOP/Fraction/main.cpp#L395
 2. Проверочный код должен заработать:
 	https://github.com/okovtun/SPU_223/blob/f6f9f2055774f3b083b118b93f0bd1596c16aa5d/IntroductionToOOP/Fraction/main.cpp#L403
+3. В от дельном проекте реализовать класс String;
+4. В отдельном проекте реализовать класс Matrix, который описывает матрицу,
+   и обеспечивает операции над матрицами: +, -, *, /
 
 DONE:
 Для класса Fraction перегрузить
