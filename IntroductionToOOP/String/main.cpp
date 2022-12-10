@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+п»ї#define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 using std::cin;
 using std::cout;
@@ -12,8 +12,8 @@ String operator+(const String& left, const String& right);
 
 class String
 {
-	size_t size;	//размер строки в Байтах (size_t - unsigned int)
-	char* str;		//адрес строки в динамической памяти
+	size_t size;	//СЂР°Р·РјРµСЂ СЃС‚СЂРѕРєРё РІ Р‘Р°Р№С‚Р°С… (size_t - unsigned int)
+	char* str;		//Р°РґСЂРµСЃ СЃС‚СЂРѕРєРё РІ РґРёРЅР°РјРёС‡РµСЃРєРѕР№ РїР°РјСЏС‚Рё
 public:
 	size_t get_size()const
 	{
@@ -42,8 +42,8 @@ public:
 		this->str = new char[size] {};
 		strcpy(this->str, str);	//strcpy - string copy
 		//strcpy(dst, src);
-		//dst - destination string (с трока В которую копируем - строка получатель)
-		//src - source string (строка источник - строка, из которой копируем)
+		//dst - destination string (СЃ С‚СЂРѕРєР° Р’ РєРѕС‚РѕСЂСѓСЋ РєРѕРїРёСЂСѓРµРј - СЃС‚СЂРѕРєР° РїРѕР»СѓС‡Р°С‚РµР»СЊ)
+		//src - source string (СЃС‚СЂРѕРєР° РёСЃС‚РѕС‡РЅРёРє - СЃС‚СЂРѕРєР°, РёР· РєРѕС‚РѕСЂРѕР№ РєРѕРїРёСЂСѓРµРј)
 		cout.width(WIDTH);
 		cout << std::left << "Constructor:" << this << endl;
 	}
@@ -74,9 +74,9 @@ public:
 	//					Operators:
 	String& operator=(const String& other)
 	{
-		//0) Проверяем, не является ли принятый объект нашим объектом:
+		//0) РџСЂРѕРІРµСЂСЏРµРј, РЅРµ СЏРІР»СЏРµС‚СЃСЏ Р»Рё РїСЂРёРЅСЏС‚С‹Р№ РѕР±СЉРµРєС‚ РЅР°С€РёРј РѕР±СЉРµРєС‚РѕРј:
 		if (this == &other)return *this;
-		//1) Удаляем старое значение объекта
+		//1) РЈРґР°Р»СЏРµРј СЃС‚Р°СЂРѕРµ Р·РЅР°С‡РµРЅРёРµ РѕР±СЉРµРєС‚Р°
 		delete[] this->str;
 		//2) Deep copy:
 		this->size = other.size;
@@ -195,12 +195,12 @@ void main()
 	String str3 = str2;		//Copy constructor
 	str3.print();
 
-	String str4();	//Здесь НЕ вызывается Default constructor, 
-					//здесь объявляется функция str4, которая ничего не принимает,
-					//и возвращает значение типа String
-	//str4.print();	//str4 - это функция, а не объект
-	//Явно вызвать Default constructor можно так:
-	String str5{};	//Явный вызов конструктора по умолчанию
+	String str4();	//Р—РґРµСЃСЊ РќР• РІС‹Р·С‹РІР°РµС‚СЃСЏ Default constructor, 
+					//Р·РґРµСЃСЊ РѕР±СЉСЏРІР»СЏРµС‚СЃСЏ С„СѓРЅРєС†РёСЏ str4, РєРѕС‚РѕСЂР°СЏ РЅРёС‡РµРіРѕ РЅРµ РїСЂРёРЅРёРјР°РµС‚,
+					//Рё РІРѕР·РІСЂР°С‰Р°РµС‚ Р·РЅР°С‡РµРЅРёРµ С‚РёРїР° String
+	//str4.print();	//str4 - СЌС‚Рѕ С„СѓРЅРєС†РёСЏ, Р° РЅРµ РѕР±СЉРµРєС‚
+	//РЇРІРЅРѕ РІС‹Р·РІР°С‚СЊ Default constructor РјРѕР¶РЅРѕ С‚Р°Рє:
+	String str5{};	//РЇРІРЅС‹Р№ РІС‹Р·РѕРІ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 	str5.print();
 
 	String str6{ 8 };
