@@ -34,7 +34,7 @@ public:
 		cout.width(WIDTH);
 		cout << std::left << "DefaultConstructor:" << this << endl;
 	}
-	String(const char* str) :size(strlen(str) + 1), str(new char[size] {})
+	String(const char* str) :String(strlen(str) + 1)
 	{
 		strcpy(this->str, str);	//strcpy - string copy
 		//strcpy(dst, src);
@@ -43,15 +43,12 @@ public:
 		cout.width(WIDTH);
 		cout << std::left << "Constructor:" << this << endl;
 	}
-	String(const String& other) :size(other.size), str(new char[size] {})
+	String(const String& other) :String(other.str)
 	{
-		//this->size = other.size;
-		//this->str = new char[size] {};
-		strcpy(this->str, other.str);
 		cout.width(WIDTH);
 		cout << std::left << "CopyConstructor:" << this << endl;
 	}
-	String(String&& other):size(other.size), str(other.str)
+	String(String&& other) :size(other.size), str(other.str)
 	{
 		other.size = 0;
 		other.str = nullptr;
@@ -137,8 +134,8 @@ std::ostream& operator<<(std::ostream& os, const String& obj)
 }
 
 //#define CONSTRUCTORS_CHECK
-#define OPERATOR_PLUS_CHECK
-//#define WAYS_TO_CALL_CONSTRUCTORS
+//#define OPERATOR_PLUS_CHECK
+#define WAYS_TO_CALL_CONSTRUCTORS
 
 void main()
 {
