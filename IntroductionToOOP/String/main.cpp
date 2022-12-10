@@ -7,6 +7,9 @@ using std::endl;
 #define WIDTH	20
 #define delimiter "\n--------------------------------------------\n"
 
+/////////////////////////////////////////////////////////////////////////////
+//////////		CLASS DECLARATION - ОБЪЯВЛЕНИЕ КЛАССА			/////////////
+
 class String;
 String operator+(const String& left, const String& right);
 
@@ -37,6 +40,12 @@ public:
 	//					Methods:
 	void print()const;
 };
+
+//////////	CLASS DECLARATION END - КОНЕЦ ОБЪЯВЛЕНИЯ КЛАССА		/////////////
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+//////////		CLASS DEFINITION - ОПРЕДЕЛЕНИЕ КЛАССА			/////////////
 
 size_t String::get_size()const
 {
@@ -154,6 +163,9 @@ std::ostream& operator<<(std::ostream& os, const String& obj)
 {
 	return os << obj.get_str();
 }
+
+//////////	CLASS DEFINITION END - КОНЕЦ ОПРЕДЕЛЕНИЯ КЛАССА		/////////////
+/////////////////////////////////////////////////////////////////////////////
 
 //#define CONSTRUCTORS_CHECK
 #define OPERATOR_PLUS_CHECK
