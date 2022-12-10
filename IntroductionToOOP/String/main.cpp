@@ -143,6 +143,8 @@ std::ostream& operator<<(std::ostream& os, const String& obj)
 }
 
 //#define CONSTRUCTORS_CHECK
+//#define OPERATOR_PLUS_CHECK
+#define WAYS_TO_CALL_CONSTRUCTORS
 
 void main()
 {
@@ -163,7 +165,7 @@ void main()
 	str4.print();
 #endif // CONSTRUCTORS_CHECK
 
-
+#ifdef OPERATOR_PLUS_CHECK
 	String str1 = "Hello";
 	cout << str1 << endl;
 	String str2 = "World";
@@ -180,5 +182,32 @@ void main()
 	//Move semantic
 	//MoveConstructor
 	//MoveAssignment
-	//Shallow copy
+	//Shallow copy  
+#endif // OPERATOR_PLUS_CHECK
+
+#ifdef WAYS_TO_CALL_CONSTRUCTORS
+	String str1;			//Default constructor
+	str1.print();
+
+	String str2 = "Hello";	//Single-argument constructor
+	str2.print();
+
+	String str3 = str2;		//Copy constructor
+	str3.print();
+
+	String str4();	//«десь Ќ≈ вызываетс€ Default constructor, 
+					//здесь объ€вл€етс€ функци€ str4, котора€ ничего не принимает,
+					//и возвращает значение типа String
+	//str4.print();	//str4 - это функци€, а не объект
+	//явно вызвать Default constructor можно так:
+	String str5{};	//явный вызов конструктора по умолчанию
+	str5.print();
+
+	String str6{ 8 };
+	str6.print();
+
+	String str7{ "Hello constructors" };
+	str7.print();
+#endif // WAYS_TO_CALL_CONSTRUCTORS
+
 }

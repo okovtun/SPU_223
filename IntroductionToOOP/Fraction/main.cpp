@@ -1,4 +1,5 @@
-﻿#include<iostream>
+﻿#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
 //using namespace std;
 using std::cin;
 using std::cout;
@@ -59,6 +60,17 @@ public:
 		cout.width(WIDTH);
 		cout << std::left << "SingleArgumentConstructor:" << this << endl;
 	}
+	Fraction(double decimal)
+	{
+		integer = decimal;		//Сохраняем целую часть десятичной дроби
+		decimal -= integer;		//убираем целую часть из десятичной дроби
+		denominator = 1e+9;
+		decimal *= denominator;	//Всю дробную часть, которую мы можем сохранить вынимаем в целую часть числа
+		numerator = decimal;	//
+		reduce();
+		cout.width(WIDTH);
+		cout << std::left << "DoubleArgumentConstructor:" << this << endl;
+	}
 	Fraction(int numerator, int denominator)
 	{
 		this->integer = 0;
@@ -90,6 +102,13 @@ public:
 	}
 
 	//					Operators:
+	Fraction& operator()(int integer, int numerator, int denominator)
+	{
+		set_integer(integer);
+		set_numerator(numerator);
+		set_denominator(denominator);
+		return *this;
+	}
 	Fraction& operator=(const Fraction& other)
 	{
 		this->integer = other.integer;
@@ -257,6 +276,48 @@ std::ostream& operator<<(std::ostream& os, const Fraction& obj)
 	else if (obj.get_integer() == 0)os << 0;
 	return os;
 }
+std::istream& operator>>(std::istream& is, Fraction& obj)
+{
+	/*int integer, numerator, denominator;
+	is >> integer >> numerator >> denominator;
+	obj(integer, numerator, denominator);*/
+
+	/*
+		2(3/4);
+		2 3/4;
+		1/2;
+		5;
+	*/
+	const int SIZE = 256;
+	char buffer[SIZE] = {};
+	//is >> buffer;
+	is.getline(buffer, SIZE);
+	//cout << buffer << endl;
+	int number[3];
+	int n = 0;	//количество введенных значений
+	
+	//strtok() возвращает адрес строки до разделителя, при этом разделитель заменяется NULL-терминатором
+	char delimiters[] = "() /";
+	for (char* pch = strtok(buffer, delimiters); pch; pch = strtok(NULL, delimiters))
+	{
+		number[n++] = std::atoi(pch);
+		//std::atoi(ANSI-string to integer) - преобразует строку в число типа int
+	}
+
+	//for (int i = 0; i < n; i++)cout << number[i] << "\t"; cout << endl;
+	obj = Fraction();	//Обнуляем объект
+	switch (n)
+	{
+	case 1: obj.set_integer(number[0]); break;
+	case 2:
+		obj.set_numerator(number[0]);
+		obj.set_denominator(number[1]);
+		break;
+	case 3: obj(number[0], number[1], number[2]);
+	}
+
+	return is;
+}
 
 //#define CONSTRUCTORS_CHECK
 //#define ARITHMETICAL_OPERATORS_CHECK
@@ -264,7 +325,7 @@ std::ostream& operator<<(std::ostream& os, const Fraction& obj)
 //#define TYPE_CONVERSIONS_BASICS
 //#define CONVERSION_FROM_OTHER_TO_CLASS
 //#define CONVERSION_FROM_CLASS_TO_OTHER
-#define HOME_WORK_1
+//#define HOME_WORK_1
 #define HOME_WORK_2
 
 void main()
@@ -393,7 +454,7 @@ operator type()const
 #endif // CONVERSION_FROM_CLASS_TO_OTHER
 
 #ifdef HOME_WORK_1
-	Fraction A;
+	Fraction A(128, 256, 512);
 	cout << "Введите простую дробь: ";
 	cin >> A;
 	cout << A << endl;
