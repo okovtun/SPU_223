@@ -52,11 +52,16 @@ public:
 	}
 
 	//						Methods:
-	virtual void info()const
+	virtual std::ostream& info(std::ostream& os)const
 	{
-		cout << last_name << " " << first_name << " " << age << " лет\n";
+		return os << last_name << " " << first_name << " " << age << " лет, ";
 	}
 };
+
+std::ostream& operator<<(std::ostream& os, const Human& obj)
+{
+	return obj.info(os);
+}
 
 #define STUDENT_TAKE_PARAMETERS	const std::string& speciality, const std::string& group, double rating, double attendance
 #define STUDENT_GIVE_PARAMETERS	speciality, group, rating, attendance
@@ -116,10 +121,9 @@ public:
 	}
 
 	//					Methods:
-	void info()const 
+	std::ostream& info(std::ostream& os)const 
 	{
-		Human::info();
-		cout << speciality << " " << group << " " << rating << " " << attendance << endl;
+		return Human::info(os) << speciality << " " << group << " " << rating << " " << attendance;
 	}
 };
 
@@ -161,10 +165,9 @@ public:
 	}
 
 	//					Methods:
-	void info()const 
+	std::ostream& info(std::ostream& os)const 
 	{
-		Human::info();
-		cout << speciality << " " << experience << endl;
+		return Human::info(os) << speciality << " " << experience;
 	}
 };
 
@@ -198,10 +201,9 @@ public:
 	}
 
 	//				Methods:
-	void info()const 
+	std::ostream& info(std::ostream& os)const 
 	{
-		Student::info();
-		cout << subject << endl;
+		return Student::info(os) << subject;
 	}
 };
 
@@ -269,7 +271,8 @@ void main()
 	cout << delimiter << endl;
 	for (int i = 0; i < sizeof(group) / sizeof(Human*); i++)
 	{
-		group[i]->info();
+		//group[i]->info();
+		cout << *group[i] << endl;
 		cout << delimiter << endl;
 	}
 
