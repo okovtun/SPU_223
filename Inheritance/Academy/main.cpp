@@ -2,6 +2,8 @@
 #include<string>
 using namespace std;
 
+#define delimiter "\n---------------------------------------------\n"
+
 #define HUMAN_TAKE_PARAMETERS	const std::string& last_name, const std::string& first_name, unsigned int age
 #define HUMAN_GIVE_PARAMETERS	last_name, first_name, age
 
@@ -44,13 +46,13 @@ public:
 		set_age(age);
 		cout << "HConstructor:\t" << this << endl;
 	}
-	~Human()
+	virtual ~Human()
 	{
 		cout << "HDestructor:\t" << this << endl;
 	}
 
 	//						Methods:
-	void info()const
+	virtual void info()const
 	{
 		cout << last_name << " " << first_name << " " << age << " лет\n";
 	}
@@ -100,7 +102,7 @@ public:
 	}
 
 	//					Constructors:
-	Student(HUMAN_TAKE_PARAMETERS, STUDENT_TAKE_PARAMETERS):Human(HUMAN_GIVE_PARAMETERS)
+	Student(HUMAN_TAKE_PARAMETERS, STUDENT_TAKE_PARAMETERS) :Human(HUMAN_GIVE_PARAMETERS)
 	{
 		set_speciality(speciality);
 		set_group(group);
@@ -114,7 +116,7 @@ public:
 	}
 
 	//					Methods:
-	void info()const
+	void info()const 
 	{
 		Human::info();
 		cout << speciality << " " << group << " " << rating << " " << attendance << endl;
@@ -159,7 +161,7 @@ public:
 	}
 
 	//					Methods:
-	void info()const
+	void info()const 
 	{
 		Human::info();
 		cout << speciality << " " << experience << endl;
@@ -196,16 +198,21 @@ public:
 	}
 
 	//				Methods:
-	void info()const
+	void info()const 
 	{
 		Student::info();
 		cout << subject << endl;
 	}
 };
- 
+
+//#define INHERITANCE
+#define POLYMORPHISM
+
 void main()
 {
 	setlocale(LC_ALL, "");
+
+#ifdef INHERITANCE
 	Human human("Montana", "Antonio", 25);
 	human.info();
 
@@ -217,4 +224,59 @@ void main()
 
 	Graduate grad("Schrader", "Hank", 40, "Criminalistic", "OBN", 85, 80, "How to catch Heisenberg");
 	grad.info();
+#endif // INHERITANCE
+
+#ifdef POLYMORPHISM
+	/*
+	--------------------------
+	Polymorhism (Poly - много, Morhis - форма)
+	Ad-hoc polymorphism - это перегрузка функций, методов, и операторов,
+						  реализуется на этапе компиляции, поэтому еще называется
+						  Compile-time polymorhism.
+	Inclusion polymorphism (Полиморфизм подтипов) - это способность объектов вести себя по разному,
+						  в зависимости от того, кем они являеются.
+						  Например, любое животное издает звуки, но каждое животное издает звук,
+						  в зависимости от того, кем оно является:
+						  Собаки лают, Коты мяукают.
+	Реализуется при помощи:
+	1. указателей на базовый класс.
+	   Указатель на базовый класс может хранить адрес дочернего объекта,
+	   это позволяет выполнят Generalisation (Обобщение)
+	   Upcast - приведение к базовому типу.
+	2. виртуальных методов.
+	   Виртуальным называется метод, который может быть переопределен в дочернем классе,
+	   с учетом его полей.
+	   Виртуальные методы позволяют выполнять Specialisation (уточнение) - переход
+	   от чего-то более абстрактного, более конктреному, такой переход еще называют Downcast.
+	--------------------------
+	*/
+
+	/*Human* p_human1 = new Student("Pinkman", "Jessie", 25, "Chemistry", "WW_220", 80, 90);
+	Human* p_human2 = new Teacher("White", "Walter", 50, "Chemistry", 25);
+	p_human1->info();
+	p_human2->info();*/
+
+	//Generalisation:
+	Human* group[] =
+	{
+		new Student("Pinkman", "Jessie", 25, "Chemistry", "WW_220", 80, 90),
+		new Teacher("White", "Walter", 50, "Chemistry", 25),	//UpCast
+		new Graduate("Schrader", "Hank", 40, "Criminalistic", "OBN", 85, 80, "How to catch Heisenberg"),
+		new Student("Vercetti", "Tomas", 30, "Criminalistic", "Vice", 85, 98),
+		new Teacher("Diaz", "Ricardo", 50, "Weapons ditribution", 20),
+	};
+
+	cout << delimiter << endl;
+	for (int i = 0; i < sizeof(group) / sizeof(Human*); i++)
+	{
+		group[i]->info();
+		cout << delimiter << endl;
+	}
+
+	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)
+	{
+		delete group[i];
+	}
+#endif // POLYMORPHISM
+
 }
