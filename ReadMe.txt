@@ -5,7 +5,13 @@ Books:
 https://drive.google.com/drive/folders/1mIhAKMp5-Jpy6s5X8u924tRCXFEdHE_z?usp=sharing
 
 TODO:
-1. 
+1. В файле "201 RAW.txt" (https://github.com/okovtun/SPU_223/blob/master/Inheritance/Files/201%20RAW.txt)
+   поменять местами столбики с MAC-адресом и IP-адресом
+2. Из файла "201 RAW.txt" (https://github.com/okovtun/SPU_223/blob/master/Inheritance/Files/201%20RAW.txt)
+   сделать файл формата "201.dhcpd" (https://github.com/okovtun/SPU_223/blob/master/Inheritance/Files/201.dhcpd)
+3. В проекте Academy:
+	1. Сохранить группу в файл;
+	2. Загрузить группу из файла;
 
 DONE:
 1. Разделить класс String на файлы;
