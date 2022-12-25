@@ -1,6 +1,7 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 #include<fstream>
+#include<string>
 using namespace std;
 
 #define IP_MAC_EXCHANGE
@@ -9,8 +10,7 @@ void main()
 {
 	setlocale(LC_ALL, "");
 
-	char sz_room_number[FILENAME_MAX] = {};
-	//int room_number;
+	/*char sz_room_number[FILENAME_MAX] = {};
 	cout << "Введите номер аудитории: "; cin >> sz_room_number;
 	char sz_source_filename[FILENAME_MAX] = {};
 	strcat(sz_source_filename, sz_room_number);
@@ -23,16 +23,29 @@ void main()
 	strcat(sz_dhcp_filename, ".dhcpd.txt");
 	cout << sz_source_filename << endl;
 	cout << sz_wal_filename << endl;
-	cout << sz_dhcp_filename << endl;
+	cout << sz_dhcp_filename << endl;*/
 
-	const int IP_SIZE = 16;
-	const int MAC_SIZE = 18;
-	char sz_ip_buffer[IP_SIZE] = {};	//sz_ - String Zero (NULL Terminated Line)
-	char sz_mac_buffer[MAC_SIZE] = {};
+	//const int IP_SIZE = 16;
+	//const int MAC_SIZE = 18;
+	//char sz_ip_buffer[IP_SIZE] = {};	//sz_ - String Zero (NULL Terminated Line)
+	//char sz_mac_buffer[MAC_SIZE] = {};
+
+	int room_number;
+	cout << "Введите номер аудитории: "; cin >> room_number;
+	std::string source_filename = std::to_string(room_number) + " RAW.txt";
+	std::string wal_filename = std::to_string(room_number) + " WAL.txt";
+	std::string dhcp_filename = std::to_string(room_number) + ".dhcpd.txt";
+
+	cout << source_filename << endl;
+	cout << wal_filename << endl;
+	cout << dhcp_filename << endl;
+
+	std::string sz_ip_buffer;
+	std::string sz_mac_buffer;
 
 #ifdef IP_MAC_EXCHANGE
-	std::ofstream fout(sz_wal_filename);
-	std::ifstream fin(sz_source_filename);
+	std::ofstream fout(wal_filename);
+	std::ifstream fin(source_filename);
 	if (fin.is_open())
 	{
 		//Будем читать файл
@@ -48,9 +61,10 @@ void main()
 		fin.close();
 
 		fout.close();
-		char sz_command_1[FILENAME_MAX] = "start notepad ";
-		strcat(sz_command_1, sz_wal_filename);
-		system(sz_command_1);
+		std::string sz_command_1 = "start notepad ";
+		sz_command_1 += wal_filename;
+		//strcat(sz_command_1, sz_wal_filename);
+		system(sz_command_1.c_str());
 	}
 	else
 	{
@@ -59,8 +73,8 @@ void main()
 
 #endif // IP_MAC_EXCHANGE
 
-	fout.open(sz_dhcp_filename);
-	fin.open(sz_source_filename);
+	fout.open(dhcp_filename);
+	fin.open(source_filename);
 	if (fin.is_open())
 	{
 		//TODO read file:
@@ -71,14 +85,14 @@ void main()
 			if (sz_ip_buffer[0] == NULL && sz_mac_buffer[0] == NULL)continue;
 			for (int j = 0; sz_mac_buffer[j]; j++)
 				if (sz_mac_buffer[j] == '-')sz_mac_buffer[j] = ':';
-			cout << "host " << sz_room_number << "-" << i + 1 << endl;
+			cout << "host " << room_number << "-" << i + 1 << endl;
 			cout << "{\n";
 			cout << "\thardware ethernet\t" << sz_mac_buffer << ";\n";
 			cout << "\tfixed-address\t\t" << sz_ip_buffer << ";\n";
 			cout << "}\n";
 			cout << endl;
 
-			fout << "host " << sz_room_number << "-" << i + 1 << endl;
+			fout << "host " << room_number << "-" << i + 1 << endl;
 			fout << "{\n";
 			fout << "\thardware ethernet\t" << sz_mac_buffer << ";\n";
 			fout << "\tfixed-address\t\t" << sz_ip_buffer << ";\n";
@@ -89,9 +103,9 @@ void main()
 		fin.close();
 
 		fout.close();
-		char sz_command_2[FILENAME_MAX] = "start notepad ";
-		strcat(sz_command_2, sz_dhcp_filename);
-		std::system(sz_command_2);
+		std::string sz_command_2 = "start notepad ";
+		sz_command_2 += dhcp_filename;
+		std::system(sz_command_2.c_str());
 	}
 	else
 	{
