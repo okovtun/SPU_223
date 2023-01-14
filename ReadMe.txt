@@ -5,6 +5,12 @@ Books:
 https://drive.google.com/drive/folders/1mIhAKMp5-Jpy6s5X8u924tRCXFEdHE_z?usp=sharing
 
 TODO:
+TODO:
+Реализовать иерархию классов геометрических фигур: Квадрат, прямоугольник, треугольник, круг......
+Для каждой фигуры необходимо выести ее первичные свойства (сторона квадрата, радиус круга....),
+и вторичные свойства, такие как периметр, площадь, а так же каждую фигуру нужно нарисовать.
+
+DONE:
 1. DONE В файле "201 RAW.txt" (https://github.com/okovtun/SPU_223/blob/master/Inheritance/Files/201%20RAW.txt)
    поменять местами столбики с MAC-адресом и IP-адресом
 2. DONE Из файла "201 RAW.txt" (https://github.com/okovtun/SPU_223/blob/master/Inheritance/Files/201%20RAW.txt)
