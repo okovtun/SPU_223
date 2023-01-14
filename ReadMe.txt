@@ -4,7 +4,10 @@ https://www.youtube.com/watch?v=ftMh_EzAyiQ&list=PLeqyOOqxeiIPX3WKab4KbypLjlxmCT
 Books:
 https://drive.google.com/drive/folders/1mIhAKMp5-Jpy6s5X8u924tRCXFEdHE_z?usp=sharing
 
-TODO:
+Console virtual terminal sequences:
+https://learn.microsoft.com/ru-ru/windows/console/console-virtual-terminal-sequences
+https://learn.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences
+
 TODO:
 Реализовать иерархию классов геометрических фигур: Квадрат, прямоугольник, треугольник, круг......
 Для каждой фигуры необходимо выести ее первичные свойства (сторона квадрата, радиус круга....),
