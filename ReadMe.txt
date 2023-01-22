@@ -8,6 +8,8 @@ Console virtual terminal sequences:
 https://learn.microsoft.com/ru-ru/windows/console/console-virtual-terminal-sequences
 https://learn.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences
 
+https://github.com/okovtun/PV_224
+
 TODO:
 Реализовать иерархию классов геометрических фигур: Квадрат, прямоугольник, треугольник, круг......
 Для каждой фигуры необходимо выести ее первичные свойства (сторона квадрата, радиус круга....),

@@ -334,4 +334,5 @@ void main()
 
 	Geometry::IsoscalesTriangle isocsales(50, 75, 750, 250, 5, Geometry::Color::green);
 	isocsales.info();
+
 }
